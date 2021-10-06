@@ -1,0 +1,21 @@
+{
+  "ProductCollection": 
+  [
+    {
+      "Type": "ProductA",
+      "Name": "Basic Electricity Tariff",
+      "ConsumptionCharge": 22,
+      "BaseCost": 5,
+      "Tariff": 0,      
+      "Description": "Basic Plan is ideal for small families with usage lesser than 4000 kWH/year. Best for Savings. Minimal Connection and Deposit cost involved.Activation can take upto 2 hours."
+    },
+    {
+      "Type": "ProductB",
+      "Name": "Packaged Tariff",
+      "ConsumptionCharge": 30,
+      "BaseCost": 800,
+      "Tariff": 0,      
+      "Description": "Packaged Tariff is ideal for large families with usage in the range of 4000 kWH/year. Best Savings offered for bulk usage.Zero connection and Deposit Cost involved.Activation can take an hour."
+    }
+  ]
+}

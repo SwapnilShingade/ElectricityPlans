@@ -1,0 +1,140 @@
+<div layout="column">
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    "
+  >
+    <mat-card-title>Compare Plans</mat-card-title>
+    <br />
+    <mat-card-content>
+      <div class="container-fluid select-input-container no-gutters">
+        <div class="row">
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 col-xl-4 py-1">
+            <mat-form-field appearance="fill">
+              <mat-label style="border-width: 0">Enter Usage in kWh/year</mat-label>
+              <input
+                matInput
+                #input2
+                [(ngModel)]="usage"
+                (ngModelChange)="username = $event"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; align-items: center">
+        <button
+          mat-raised-button
+          style="background-color: #fd8a02; color: #fff"
+          (click)="compare()"
+          class="search-btn" [disabled]="checkUsage()"        >
+          Compare
+        </button>
+      </div>
+    </mat-card-content>
+  </div>
+</div>
+
+<div
+  layout="row"
+  style="
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <div
+    style="width: 350px; margin: 5px; border-top: 4px solid #fd8a02"
+    *ngFor="let product of productGrid"
+  >
+    <div class="pricing-table">
+      <div class="package-layout">
+        <div class="package-value">
+          <div class="value">{{ product.type }}</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="package-title">
+        <span>{{ product.name }}</span>
+      </div>
+      <div class="divider"></div>
+      <div class="terms">
+        <div class="term">
+          <p>{{ product.description }}</p>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  "
+>
+  <mat-spinner
+    color="accent"
+    *ngIf="isLoading"
+    style="margin: 0 auto"
+  ></mat-spinner>
+  <div class="requestor-table" [hidden]="!showPlans" style="width: 100%">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      style="
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid #eee;
+        border-radius: 7px;
+        padding: 10px;
+        border-top: 4px solid #fd8a02;
+      "
+    >
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prodcut Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="baseCost">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Base Cost (€/month)</th>
+        <td mat-cell *matCellDef="let element">{{ element.baseCost }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="consumptionCharge">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Consumption Cost (cent/kWh)
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.consumptionCharge }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tariff">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Total Tariff (€/year)
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.tariff }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
