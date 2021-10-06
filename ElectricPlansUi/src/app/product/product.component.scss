@@ -1,0 +1,135 @@
+$black: rgba(248, 248, 248, 0.87);
+$blue: #2196f3;
+$dark-gray: #c2c2c2;
+$gray: #eee;
+$muted: rgba(0, 0, 0, 0.54);
+
+$body-bg: $gray;
+$text-color: $black;
+$text-currency: $muted;
+$title-bg-color: $dark-gray;
+
+$box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+  0 2px 1px -1px rgba(0, 0, 0, 0.12);
+
+.pricing-table {
+  display: flex;
+  min-height: 400px;
+  flex-direction: column;
+  margin: 0 0 32px;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: $box-shadow;
+
+  &.offer {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+      0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  .package-title {
+    display: flex;
+    justify-content: center;
+    padding: 16px 24px;
+    font-size: 1.125rem;
+    color: #000;
+
+    .sale {
+      padding: 0 0.5rem;
+      border-radius: 3px;
+      background-color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: $dark-gray;
+      line-height: 1.7;
+    }
+  }
+
+  .package-layout {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 2rem 1rem;
+
+    .package-currency {
+      padding-right: 4px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: $text-currency;
+    }
+
+    .package-value {
+      display: flex;
+      align-items: flex-end;
+
+      .value {
+        font-size: 1.5rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .period {
+        padding: 0 0 5px 4px;
+        font-size: 1.125rem;
+        font-weight: 300;
+        color: $muted;
+      }
+    }
+  }
+
+  .terms {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    font-size: 0.9125rem;
+
+    .term {
+      p {
+        font-weight: 400;
+        line-height: 22px;
+        text-align: center;
+      }
+    }
+  }
+
+  .buy-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 2rem;
+    padding: 2px 18px;
+    min-width: 128px;
+    border: none;
+    border-radius: 3px;
+    background-color: $blue;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 39px;
+    text-transform: uppercase;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+      background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+      0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    &:hover,
+    &:focus {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .divider {
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    margin: 16px 32px;
+  }
+}

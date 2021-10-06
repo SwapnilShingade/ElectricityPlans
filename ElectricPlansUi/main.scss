@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+
+// 1. Configuration and helpers
+@import 'variables';
+
+// 2. Vendors
+@import 'vendors/material-override';
+
+
+// 3. Base stuff
+@import 'base/reset';
+
+// 4. Layout-related sections
+
+
+// 5. Components
+@import 'components/grids';
+
+
+// 6. Page-specific styles
+
+
+// 7. Themes
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
