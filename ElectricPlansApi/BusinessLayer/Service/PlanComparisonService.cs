@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Interface;
+﻿using AutoMapper;
+using BusinessLayer.Interface;
 using BusinessLayer.Models;
 using DataAccessLayer;
 using DataAccessLayer.Models;
@@ -10,11 +11,13 @@ namespace BusinessLayer
 {
     public class PlanComparisonService : IPlanComparison
     {
-        public IProductsLoader _productsLoader;        
+        public IProductsLoader _productsLoader;
+        private readonly IMapper _mapper;
         public PlanComparisonService() { }
-        public PlanComparisonService(IProductsLoader productsLoader)
+        public PlanComparisonService(IProductsLoader productsLoader, IMapper mapper)
         {
             _productsLoader = productsLoader;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -59,15 +62,7 @@ namespace BusinessLayer
                 ProductsCollectionDTO prodcutsDto = _productsLoader.GetProducts();
                 if (prodcutsDto != null)
                 {
-                    products = prodcutsDto.ProductCollection.Select(x => new Product()
-                    {
-                        BaseCost = x.BaseCost,
-                        ConsumptionCharge = x.ConsumptionCharge,
-                        Name = x.Name,
-                        Type = x.Type,
-                        Description = x.Description,
-                        ImageUrl = x.ImageUrl
-                    }).ToList();
+                    products =  _mapper.Map<List<ProductsDTO>, List<Product>>(prodcutsDto.ProductCollection);                    
                 }
             }
             catch (Exception ex)

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../shared/products-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { Product, ProductGrid } from '../shared/products-model';
+import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material';
 
 
 
@@ -11,17 +13,23 @@ import { Product, ProductGrid } from '../shared/products-model';
   styleUrls: ['product.component.scss']
 })
 
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, AfterViewInit {
   usage: number;
   showPlans = false;
   isLoading = false;  
   displayedColumns: string[] = ['type', 'name', 'baseCost', 'consumptionCharge', 'tariff'];
-  dataSource: Product[];
+  dataSource  = new MatTableDataSource;
   productGrid: ProductGrid[];
   constructor(private productService: ProductService, private toastrService: ToastrService) { }
 
+  @ViewChild(MatSort) sort: MatSort;
+
   ngOnInit() {
-    this.getProducts();
+    this.getProducts();    
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
   compare() {
     if (this.usage > 0) {
@@ -30,7 +38,7 @@ export class ProductComponent implements OnInit {
         this.isLoading = false;
         this.showPlans = true;
         this.toastrService.success("Comparison Results are Ready!!")
-        this.dataSource = products;
+        this.dataSource.data = products;        
       },
         error => {
           this.isLoading = false;

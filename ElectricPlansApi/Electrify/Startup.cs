@@ -1,4 +1,5 @@
 using BusinessLayer;
+using BusinessLayer.AutoMapper;
 using BusinessLayer.Interface;
 using DataAccesslayer;
 using DataAccessLayer;
@@ -21,7 +22,8 @@ namespace Electrify
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {         
+        {
+            services.AddAutoMapper(typeof(Mappings));
             services.AddControllers();
             services.AddControllers();
             services.AddSingleton<IProductsLoader, ProductsLoader>();
@@ -37,7 +39,7 @@ namespace Electrify
                     builder.WithOrigins("http://localhost:4200"
                                         )
                                         .AllowAnyHeader()
-                                        .AllowAnyMethod();
+                                          .AllowAnyMethod();
                 });
             });
             services.AddSwaggerGen(c =>

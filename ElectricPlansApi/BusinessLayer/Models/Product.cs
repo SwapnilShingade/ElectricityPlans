@@ -10,8 +10,7 @@ namespace BusinessLayer.Models
         public int ConsumptionCharge { get; set; }
         public int BaseCost { get; set; }
         public int Tariff { get; set; }  
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public string Description { get; set; }        
     }
 
     public class Products
