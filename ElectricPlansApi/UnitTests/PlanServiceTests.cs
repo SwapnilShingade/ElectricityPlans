@@ -7,6 +7,8 @@ using Xunit;
 using Moq;
 using BusinessLayer;
 using BusinessLayer.Models;
+using AutoMapper;
+using BusinessLayer.AutoMapper;
 
 namespace UnitTests
 {
@@ -14,12 +16,15 @@ namespace UnitTests
     {
         public Mock<IProductsLoader> _productsLoader;
         public PlanComparisonService planComparisonService;
-
+        public  Mock<IMapper> _mapper;      
+       
         public PlanServiceTests()
         {           
             _productsLoader = new Mock<IProductsLoader>();
+            _mapper = new Mock<IMapper>();
+            _mapper.Setup(x => x.Map<List<ProductsDTO>, List<Product>>(It.IsAny<List<ProductsDTO>>())).Returns(Helper.GetProducts);
             _productsLoader.Setup(x => x.GetProducts()).Returns(Helper.GetProductsDTO);
-            planComparisonService = new PlanComparisonService(_productsLoader.Object);
+            planComparisonService = new PlanComparisonService(_productsLoader.Object,_mapper.Object);
         }
 
         [Fact]
