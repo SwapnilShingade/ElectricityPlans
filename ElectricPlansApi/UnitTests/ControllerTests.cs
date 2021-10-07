@@ -16,14 +16,15 @@ namespace UnitTests
 
         Mock<IPlanComparison> _service;
         VerivoxController _controller;
-        ILogger<VerivoxController> _logger;
+        Mock<ILogger<VerivoxController>> _logger;
         IConfiguration _config;
         public ControllerTests()
         {
             var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             _config = config;
-            _service = new Mock<IPlanComparison>();            
-            _controller = new VerivoxController(_service.Object, _logger, _config);
+            _service = new Mock<IPlanComparison>();
+            _logger = new Mock<ILogger<VerivoxController>>();           
+            _controller = new VerivoxController(_service.Object, _logger.Object, _config);
 
         }
         [Fact]
